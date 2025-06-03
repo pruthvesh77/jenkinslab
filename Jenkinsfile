@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/pruthvesh77/jenkinslab.git'
+                git url: 'https://github.com/pruthvesh77/jenkinslab.git', branches: ['main']
             }
         }
         stage('Build') {
             steps {
-                sh 'javac simple.java' // Compiling Java file
+                sh 'javac simple.java || exit 1' // Ensure build stops on failure
             }
         }
         stage('Test') {
@@ -19,13 +19,13 @@ pipeline {
         stage('Security Scan') {
             steps {
                 dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'Default'
-                dependencyCheckPublisher pattern: 'dependency-check-report/dependency-check-report.html'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.html'
             }
         }
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh 'javac HelloWorld.java'
+                    sh 'javac simple.java || exit 1'
                     sh 'sonar-scanner'
                 }
             }
