@@ -1,7 +1,7 @@
 // Importing built-in Java utilities
 import java.util.Scanner;
 
-public class Simple {
+public class simple {
     public static void main(String[] args) {
         System.out.println("Hello, Jenkins CI/CD!");
 
