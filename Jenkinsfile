@@ -21,5 +21,13 @@ pipeline {
                 sh 'dependency-check --scan ./ --out report'
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'javac HelloWorld.java'
+                    sh 'sonar-scanner'
+                }
+            }
+        }
     }
 }
