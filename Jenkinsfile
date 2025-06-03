@@ -18,8 +18,8 @@ pipeline {
         }
         stage('Security Scan') {
             steps {
-                dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'Default'
-                dependencyCheckPublisher pattern: '**/dependency-check-report.html'
+                dependencyCheck additionalArguments: '--format XML', odcInstallation: 'Default'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
         stage('SonarQube Analysis') {
