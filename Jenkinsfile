@@ -16,6 +16,11 @@ pipeline {
                 sh 'echo "Skipping tests (no test framework setup)"'
             }
         }
+        stage('Update OWASP DB') {
+            steps {
+                sh 'dependency-check --update'
+            }
+        }
         stage('Security Scan') {
             steps {
                 dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'Default'
