@@ -1,10 +1,7 @@
-// Importing an external library
-import org.apache.commons.lang3.StringUtils;  
-
 // Importing built-in Java utilities
 import java.util.Scanner;
 
-public class simple {
+public class Simple {
     public static void main(String[] args) {
         System.out.println("Hello, Jenkins CI/CD!");
 
