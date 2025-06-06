@@ -22,10 +22,11 @@ pipeline {
                 dependencyCheck odcInstallation: 'Default', additionalArguments: ''
             }
         }
-        post{
-            always{
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
+    }
+    
+    post{
+        always{
+            dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
         }
     }
 }
